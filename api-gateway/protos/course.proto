@@ -1,0 +1,149 @@
+syntax = "proto3";
+
+option go_package = "genproto/coursepb";
+
+service CourseService{
+    rpc CreateCourse(CreateCourseReq) returns (CreateCourseResp);
+    rpc UpdateCourse(UpdateCourseReq) returns (UpdateCourseResp);
+    rpc DeleteCourse(DeleteCourseReq) returns (DeleteCourseResp);
+    rpc GetCourseById(GetCourseByIdReq) returns (GetCourseByIdResp);
+    rpc GetCourses(GetCoursesReq) returns (GetCoursesResp);
+    rpc GetCourseByUserId(GetCourseByUserIdReq) returns (GetCourseByUserIdResp);
+
+    rpc CreateLesson(CreateLessonReq) returns (CreateLessonResp);
+    rpc UpdateLesson(UpdateLessonReq) returns (UpdateLessonResp);
+    rpc DeleteLesson(DeleteLessonReq) returns (DeleteLessonResp);
+    rpc GetLessonById(GetLessonByIdReq) returns (GetLessonByIdResp);
+    rpc GetLessonsByCourseId(GetLessonsByCourseIdReq) returns (GetLessonsByCourseIdResp);
+}
+
+message Course{
+    string id = 1;
+    string user_id = 2;
+    string title = 3;
+    string description = 4;
+    string category = 5;
+    string level = 6;
+    string thumbnail_url = 7;
+}
+
+message Lesson{
+    string id = 1;
+    string course_id = 2;
+    string title = 3;
+    string video_url = 4;
+    string duration = 5;
+    int32 order_number = 6;
+}
+
+
+message CreateCourseReq{
+    string user_id = 1;
+    string title = 2;
+    string description = 3;
+    string category = 4;
+    string level = 5;
+    string thumbnail_url = 6;
+}
+message CreateCourseResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message UpdateCourseReq{
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    string category = 4;
+    string level = 5;
+    string thumbnail_url = 6;
+}
+message UpdateCourseResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message DeleteCourseReq{
+    string id = 1;
+}
+message DeleteCourseResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message GetCoursesReq{}
+message GetCoursesResp{
+    bool status = 1;
+    string message = 2;
+    repeated Course courses = 3;
+}
+
+message GetCourseByIdReq{
+    string id = 1;
+}
+message GetCourseByIdResp{
+    bool status = 1;
+    string message = 2;
+    Course course = 3;
+}
+
+message GetCourseByUserIdReq{
+    string user_id = 1;
+}
+message GetCourseByUserIdResp{
+    bool status = 1;
+    string message = 2;
+    repeated Course courses = 3;
+}
+
+
+
+
+message CreateLessonReq{
+    string course_id = 1;
+    string title = 2;
+    string video_url = 3;
+    string duration = 4;
+    int32 order_number = 5;
+}
+message CreateLessonResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message UpdateLessonReq{
+    string id = 1;
+    string title = 2;
+    string video_url = 3;
+    string duration = 4;
+    int32 order_number = 5;
+}
+message UpdateLessonResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message DeleteLessonReq{
+    string id = 1;
+}
+message DeleteLessonResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message GetLessonByIdReq{
+    string id = 1;
+}
+message GetLessonByIdResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message GetLessonsByCourseIdReq{
+    string course_id = 1;
+}
+message GetLessonsByCourseIdResp{
+    bool status = 1;
+    string message = 2;
+    repeated Lesson lessons = 3;
+}

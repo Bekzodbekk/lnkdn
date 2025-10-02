@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option go_package = "genproto/commentpb";
+
+service CommentService{
+    rpc CreateComment(CreateCommentReq) returns (CreateCommentResp);
+    rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
+    rpc DeleteComment(DeleteCommentReq) returns (DeleteCommentResp);
+    rpc GetCommentByUserId(GetCommentByUserIdReq) returns (GetCommentByUserIdResp);
+    rpc GetCommentByPostId(GetCommentByPostIdReq) returns (GetCommentByPostIdResp);
+}
+
+message Comment{
+    string id = 1;
+    string user_id = 2;
+    string post_id = 3;
+    string content = 4;
+}
+
+message CreateCommentReq{
+    string user_id = 1;
+    string post_id = 2;
+    string content = 3;
+}
+message CreateCommentResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message UpdateCommentReq{
+    string id = 1;
+    string content = 2;
+}
+message UpdateCommentResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message DeleteCommentReq{
+    string id = 1;
+}
+message DeleteCommentResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message GetCommentByUserIdReq{
+    string user_id = 1;
+}
+message GetCommentByUserIdResp{
+    bool status = 1;
+    string message = 2;
+    repeated Comment comments = 3;
+}
+
+message GetCommentByPostIdReq{
+    string post_id = 1;
+}
+message GetCommentByPostIdResp{
+    bool status = 1;
+    string message = 2;
+    repeated Comment comments = 3;
+}

@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+option go_package = "genproto/postpb";
+
+service PostService{
+    rpc CreatePost(CreatePostReq) returns (CreatePostResp);
+    rpc UpdatePost(UpdatePostReq) returns (UpdatePostResp);
+    rpc DeletePost(DeletePostReq) returns (DeletePostResp);
+    rpc GetPostById(GetPostByIdReq) returns (GetPostByIdResp);
+    rpc GetAllPosts(GetAllPostsReq) returns (GetAllPostsResp);
+    rpc GetAllPostsByUserId(GetAllPostsByUserIdReq) returns (GetAllPostsByUserIdResp);
+}
+
+message Post{
+    string id = 1;
+    string user_id = 2;
+    string content = 3;
+}
+
+message CreatePostReq{
+    string user_id = 1;
+    string content = 2;
+}
+message CreatePostResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message UpdatePostReq{
+    string id = 1;
+    string content = 2;
+}
+message UpdatePostResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message DeletePostReq{
+    string id = 1;
+}
+message DeletePostResp{
+    bool status = 1;
+    string message = 2;
+}
+
+message GetPostByIdReq{
+    string id = 1;
+}
+message GetPostByIdResp{
+    bool status = 1;
+    string message = 2;
+    Post post = 3;
+}
+message GetAllPostsReq{}
+message GetAllPostsResp{
+    bool status = 1;
+    string message = 2;
+    repeated Post posts = 3;
+}
+
+message GetAllPostsByUserIdReq{
+    string user_id = 1;
+}
+message GetAllPostsByUserIdResp{
+    bool status = 1;
+    string message = 2;
+    repeated Post posts = 3;
+}
