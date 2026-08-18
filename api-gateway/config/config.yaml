@@ -22,13 +22,3 @@ likeservice:
 courseservice:
   host: localhost
   port: 9005
-
-
-cloud_flare:
-  account_id: d3f80b147bba0da085ea39f11b2f6368
-  access_key: bd8050a96eb0c361a6abc64216362c35
-  secret_key: 6ff35d5d97836e7f41d4063138b28795da4783300cf0ae833f68e44ddbf9edd9
-  bucket_name: courses
-  bucket_id: 9d2b7ab5e6a74a99bd9c590b24651070
-  
-secret-key: grownet-secret-key-JWT
